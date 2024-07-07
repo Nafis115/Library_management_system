@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+
+<div class="bg-white shadow-md rounded-lg p-6 my-4">
+  <h1 class="text-2xl font-semibold mb-4">Welcome to your profile, {{ user.first_name }} {{ user.last_name }}!</h1>
+  <div class="bg-gray-100 p-4 rounded-lg mb-4">
+    <h2 class="text-xl font-semibold">Account Balance</h2>
+    <p class="text-lg mt-2">{{ balance }}</p>
+  </div>
+
+
+{% endblock content %}

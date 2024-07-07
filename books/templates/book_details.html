@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex flex-wrap -mx-4">
+        <div class="w-full md:w-1/2 px-4 mb-8">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="relative">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" class="w-full h-64 object-cover" alt="Book Image">
+                    {% else %}
+                        <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                            <span class="text-gray-400 text-lg">No image available</span>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-0 right-0 bg-yellow-500 px-3 py-1 rounded-bl-lg">
+                        <span class="text-white text-sm font-semibold">{{ book.category }}</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h2 class="text-2xl font-bold text-gray-800">{{ book.title }}</h2>
+                    <p class="text-lg text-gray-600">{{ book.descriptions }}</p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <p class="text-lg text-gray-800 font-semibold">${{ book.price }}</p>
+                        <p class="text-lg text-gray-800">Quantity: {{ book.quantity }}</p>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'buy_book' book.id %}" class="mt-4">
+                            {% csrf_token %}
+                            <button type="submit" name="buy" value="buy" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+                                Buy Now
+                            </button>
+                        </form>
+                    {% else %}
+                        <p class="text-red-500 mt-4">Log in to buy this book and leave a comment.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 px-4 mb-8">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Comments ({{ comments|length }})</h2>
+                    {% for comment in comments %}
+                        <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                            <p class="text-lg text-gray-800">{{ comment.body }}</p>
+                            <p class="text-gray-600 mt-2">{{ comment.name }} - {{ comment.created_on }}</p>
+                        </div>
+                    {% empty %}
+                        <p class="text-lg text-gray-800">No comments yet.</p>
+                    {% endfor %}
+                    {% if show_comment_form %}
+                        <div class="mt-4">
+                            <h2 class="text-xl font-bold text-gray-800 mb-4">Add Comment</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-4">
+                                    {{ form.name.label_tag }}
+                                    {{ form.name }}
+                                </div>
+                                <div class="mb-4">
+                                    {{ form.body.label_tag }}
+                                    {{ form.body }}
+                                </div>
+                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

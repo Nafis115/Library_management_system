@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 150px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .message {
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://example.com/logo.png" alt="Company Logo">
+        </div>
+        <div class="content">
+            <h2>Deposit Confirmation</h2>
+            <div class="message">
+                <p>Dear {{request.user.first_name}},</p>
+                <p>We are pleased to inform you that your deposit transaction has been successfully processed.</p>
+            
+                <p>If you have any questions or concerns regarding this transaction, please feel free to contact our customer support team.</p>
+                <p>Thank you for choosing [Your Company Name].</p>
+            </div>
+            <div class="button-container">
+                <a href="https://example.com" class="button">Visit our website</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>This email was sent to [Recipient Email Address] - <a href="mailto:[Your Company Email Address]">Contact us</a></p>
+            <p>&copy; 2024 [Your Company Name]. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
