@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Libary_management_system.urls'
-
+CSRF_TRUSTED_ORIGINS = ['https://library-management-system-010q.onrender.com','https://*.127.0.0.1']
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
